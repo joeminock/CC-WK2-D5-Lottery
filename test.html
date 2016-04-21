@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>www.loseloselose.com</title>
+
+    <script>
+        var count = 0;
+        var sound = new Audio("winner.wav");
+
+        function write_message( $message ) {
+            document.getElementById('messages').innerHTML = $message;
+        }
+
+        function refresh()
+        {
+            if ( count > 0 ) {
+                refreshCounts(-1);
+                var one = Math.floor((Math.random()*9)+1);
+                var two = Math.floor((Math.random()*9)+1);
+                var three = Math.floor((Math.random()*9)+1);
+
+                document.getElementById('first').innerHTML = one;
+                document.getElementById('second').innerHTML = two;
+                document.getElementById('third').innerHTML = three;
+
+                if ( one == two && two == three && three == one  ) {
+                    write_message( 'winner!' );
+                } else {
+                    write_message( 'wasted try...' );
+                }
+            } else {
+                write_message( 'I need credits to give you fun!' );
+            }
+        }
+
+        function refreshCounts( value ) {
+            count = count + value;
+            document.getElementById("p2").innerHTML = count;
+        }
+    </script>
+
+    <style>
+        body {
+            text-align: center;
+            background-color: black;
+        }
+
+        p, a {
+            color: yellow;
+            font-weight: 12px;
+        }
+
+        .title {
+            font-size: 50px;
+            text-align: center;
+        }
+
+        #machine {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<p class="title">
+    Lucky Number Slots
+</p>
+
+
+<div id="machine">
+    <svg width="550" height="250" viewBox="0 0 1600 500">
+
+    <rect x="0" y="10" width="500" height="500" fill="black" stroke="white" stroke-width="10">
+    </rect>
+
+    <rect x="550" y="10" width="500" height="500" fill="black" stroke="white" stroke-width="10">
+    </rect>
+
+    <rect x="1100" y="10" width="500" height="500" fill="black" stroke="white" stroke-width="10">
+    </rect>
+
+    <text x="100" y="415" font-family="courier" font-size="500" fill="white" id="first">
+    0
+    </text>
+
+    <text x="650" y="415" font-family="courier" font-size="500" fill="white" id ="second">
+    0
+    </text>
+
+    <text x="1200" y="415" font-family="courier" font-size="500" fill="white" id="third">
+    0
+    </text>
+    </svg>
+</div>
+
+
+<p>
+    <input type="button" value="Click Here To Spin" onClick="refresh()">
+</p>
+
+<p>
+    <a href="javascript:refreshCounts(+1)">Add Credit</a>
+</p>
+
+<p id="p2">0</p>
+
+<p id="messages"></p>
